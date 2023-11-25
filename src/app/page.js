@@ -4,7 +4,30 @@ const page = async () => {
   );
   const restaurants = await res.json();
 
-  return <div>Hello</div>;
+  const groupRestaurantsByState = () => {
+    const groupedRestaurants = {};
+
+    restaurants.forEach((restaurant) => {
+      const { state, restaurant_name } = restaurant;
+
+      if (!groupedRestaurants[state]) {
+        groupedRestaurants[state] = [];
+      }
+
+      groupedRestaurants[state].push(restaurant_name);
+    });
+
+    return groupedRestaurants;
+  };
+
+  const groupedRestaurants = groupRestaurantsByState();
+  console.log(groupedRestaurants);
+
+  return (
+    <div>
+      
+    </div>
+  );
 };
 
 export default page;
